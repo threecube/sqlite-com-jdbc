@@ -39,7 +39,7 @@ List<TestTableDO> testTableDOList = sqliteDriver.executeQuery(selectSql, TestTab
 
 ## 使用步骤
 
-### 1. 引入jar包
+### 1、引入jar包
 使用如下命令将该工程的jar加载到本地仓库中
 > 该工程的jar未上传到公共的maven仓库，因此建议， 将该jar放在您的工程的lib目录下，使用时首先在lib目录中运行如下命令。 
 
@@ -47,10 +47,10 @@ List<TestTableDO> testTableDOList = sqliteDriver.executeQuery(selectSql, TestTab
 > mvn install:install-file -DgroupId=com.dinapin.orderdish -DartifactId=sqlite_com_jdbc -Dversion=0.0.1 -Dpackaging=jar -Dfile=sqlite_com_jdbc-0.0.1.jar
 ```
 
-### 2. 创建表的DO类
-首先创建DO类，并在DO类中使用注解的方式指定对应的表名和字段名。jar提供了两种注解，分别是**@TableName**和**@TableColumn**。
+### 2、创建表的DO类
+首先创建DO类，并在DO类中使用注解的方式指定对应的表名和字段名。jar提供了两种注解，分别是 ***@TableName***和 ***@TableColumn*** 。
 
-#### 注解@TableColumn
+#### 2.1、注解@TableColumn
 用于DO对象的属性上，通过**name**指明属性对应的表字段名，通过**scale**指明精度。
 ##### *如果未指定**name**，则默认使用DO类的属性名作为表字段名*。 
 ##### *如果未指定**scale**， 则不进行精度处理；非double，float和BigDecimal类型的字段的scale设置，不进行精度处理*
@@ -71,10 +71,10 @@ private double newPrince;
 private BigDecimal newPrince;
 ```
 
-#### 注解@TableName
+#### 2.2、注解@TableName
 用于DO类上，指定该DO类对应的表名， **该注解必须设置**。
 
-### 3. 初始化SqliteDriver
+### 3、初始化SqliteDriver
 运行如下命令初始化SqliteDriver， 所有的sqlite数据库操作方法都由SqliteDriver提供：
 
 ```
@@ -83,7 +83,7 @@ SqliteDriver sqliteDriver = SqliteDriver.createInstance(String dbFilePath, Strin
 
 >该类的初始化并不会创建sqlite数据库的连接，因此不必担心连接一直占用问题。
 
-### 4. 执行增删改查操作
+### 4、执行增删改查操作
 
 #### 开启事务
 
@@ -123,7 +123,7 @@ List<?> jsonList = sqliteDriver.executeQuery(String querySql, Class<?> clazz, Ob
 int result = sqliteDriver.execute(String nonQuerySql, Object...params);
 ```
 
-### 5. Dml生成器
+### 4、Dml生成器
 jar提供了dml生成器，可以为您生成简单的sql语句。
 
 #### 生成Insert语句
